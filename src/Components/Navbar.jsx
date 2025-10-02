@@ -26,7 +26,7 @@ const Navbar = () => {
                     <img className="h-6" src={logo} alt="" />
                     {/* navs */}
                     <ul className="flex gap-6 text-[14px]">
-                        <li><Link>Home</Link></li>
+                        <li><Link to='/'>Home</Link></li>
                         <li><Link>TV Show</Link></li>
                         <li><Link>Movies</Link></li>
                         <li><Link>New & Popular</Link></li>

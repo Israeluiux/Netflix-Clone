@@ -13,7 +13,7 @@ const Footer = () => {
                 <img src={twitter} alt="" className="h-8" />
                 <img src={youtube} alt="" className="h-8" />
             </div>
-            <div className="flex justify-between items-center mt-10">
+            <div className="grid grid-cols-4 mt-10">
                 <ul className="flex flex-col gap-4">
                     <li>Audio Description</li>
                     <li>Investor Relations</li>
@@ -35,7 +35,7 @@ const Footer = () => {
                     <li>Contact Us</li>
                 </ul>
             </div>
-            <p className="my-10 text-gray-500">&copy; 1997 - 2023 Netflix Inc</p>
+            <p className="my-10 text-gray-500 text-[14px]">&copy; 1997 - 2023 Netflix Inc</p>
         </div>
     )
 }
