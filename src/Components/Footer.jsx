@@ -5,7 +5,7 @@ import youtube from "../assets/youtube_icon.png"
 
 const Footer = () => {
     return(
-        <div className="px-54 py-4 pt-20 text-white max-w-screen-2xl m-auto">
+        <div className=" px-16 md:px-28 lg:px-54 py-4 pt-20 text-white max-w-screen-2xl m-auto">
             {/* Social icons */}
             <div className="flex gap-4">
                 <img src={facebook} alt="" className="h-8" />
@@ -13,7 +13,7 @@ const Footer = () => {
                 <img src={twitter} alt="" className="h-8" />
                 <img src={youtube} alt="" className="h-8" />
             </div>
-            <div className="grid grid-cols-4 mt-10">
+            <div className="grid grid-cols-1 gap-12 md:grid-cols-4 mt-10">
                 <ul className="flex flex-col gap-4">
                     <li>Audio Description</li>
                     <li>Investor Relations</li>
