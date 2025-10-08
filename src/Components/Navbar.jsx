@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false)
     const [isOpen, setIsOpen] = useState(null)
+    const [desktopMenu, setDesktopMenu] = useState(null)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,7 +32,7 @@ const Navbar = () => {
                         <li><Link>TV Show</Link></li>
                         <li><Link>Movies</Link></li>
                         <li><Link>New & Popular</Link></li>
-                        <li><Link>My list</Link></li>
+                        <li><Link to='/mylist'>My list</Link></li>
                         <li><Link>Browse by languages</Link></li>
                     </ul>
                 </div>
@@ -45,22 +46,31 @@ const Navbar = () => {
                         <img className="absolute left-2" src={search} alt="" />
                     </div>
                     <img src={notification} alt="" />
-                    <div onClick={() => setIsOpen(!isOpen)} className="flex items-center gap-1.5">
+                    <div onClick={() => setIsOpen(!isOpen)} onMouseEnter={() => setDesktopMenu(!desktopMenu)} onMouseLeave={() => setDesktopMenu(!desktopMenu)} className="relative flex items-center gap-1.5 cursor-pointer">
                         <img src={user} className="rounded-[4px]" alt="" />
                         <img src={caret} alt="" />
+                        { desktopMenu &&
+                            <ul className="hidden absolute top-6 bg-black w-37 lg:flex flex-col rounded-xl m-auto p-3 right-0">
+                                <li className="p-1.5 hover:bg-white/10 rounded-[5px] cursor-pointer">Switch users</li>
+                                <li className="p-1.5 hover:bg-white/10 rounded-[5px] cursor-pointer">User Profile</li>
+                                <li className="text-red-500 bg-red-950 p-1.5 rounded-[5px] cursor-pointer">Log Out</li>
+                            </ul>
+                        }
                     </div>
                 </div>
                 </div>
                 {
                     isOpen &&
-                    <div className={`absolute text-white top-16 h-dvh bg-black left-0 right-0 lg:hidden`}>
-                        <ul className="flex flex-col justify-center gap-10 px-4 md:px-16 h-screen uppercase lg:hidden">
-                                <li><Link to='/'>Home</Link></li>
-                                <li><Link>TV Show</Link></li>
-                                <li><Link>Movies</Link></li>
-                                <li><Link>New & Popular</Link></li>
-                                <li><Link>My list</Link></li>
-                                <li><Link>Browse by languages</Link></li>
+                    <div className={`relative text-white h-dvh bg-black left-0 right-0 lg:hidden   transition-all duration-300 ease-in-out origin-top ${isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-8 pointer-events-none'}`}>
+                        <ul className={`flex flex-col justify-center gap-5 px-4 md:px-16 h-screen uppercase lg:hidden`}> 
+                                <li><Link className="block" to='/'>Home</Link></li>
+                                <li><Link className="block">TV Show</Link></li>
+                                <li><Link className="block">Movies</Link></li>
+                                <li><Link className="block">New & Popular</Link></li>
+                                <li><Link className="block">My list</Link></li>
+                                <li><Link className="block">Browse by languages</Link></li>
+                                <li><Link className="block">Switch user</Link></li>
+                                <li><Link className="block">Logout</Link></li>
                         </ul>
                     </div>
                 }

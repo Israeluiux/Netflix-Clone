@@ -30,7 +30,7 @@ const NetflixOnly = () => {
                 <div className="flex gap-4 transition-transform duration-500" style={{transform: `translateX(-${index * moveBy}px)`}}>
                     {
                         cards_data.map((card, i) => (
-                            <div key={i} onClick={() => navigate(`/${card.id}`)} onMouseEnter={() => setActive(i)} onMouseLeave={() => setActive(null)} className="flex-shrink-0 w-70 h-40 cursor-pointer bg-black rounded-[6px] mt-4 relative">
+                            <div key={i} onClick={() => navigate(`/movie/${card.id}`)} onMouseEnter={() => setActive(i)} onMouseLeave={() => setActive(null)} className="flex-shrink-0 w-70 h-40 cursor-pointer bg-black rounded-[6px] mt-4 relative">
                                 <img src={card.image} alt="" className="h-full w-full rounded-[6px]" />
                                 {
                                   active === i && <><div className="absolute bg-gradient-to-t from-black/100 via-black/30 to-black/5 inset-0"></div>

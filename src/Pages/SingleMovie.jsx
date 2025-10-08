@@ -5,6 +5,7 @@ import info from "../assets/info_icon.png"
 import { GoDownload } from "react-icons/go"
 import Continue from "../Components/SingleMovie/Continue"
 import Specially from "../Components/SingleMovie/Specially"
+import { FaPlus } from "react-icons/fa6"
 
 
 const SingleMovie = () => {
@@ -25,7 +26,6 @@ const SingleMovie = () => {
                     }
                 })
                 const data = await response.json()
-                console.log(data)
                 setMovie(data)
                 const rating = data.vote_average.toFixed(1)
                 setRating(rating)
@@ -42,7 +42,16 @@ const SingleMovie = () => {
     {loading
          &&
          <div className="text-white">Loading...</div>         
-     }
+    }
+
+    const AddToList = () => {
+        const saved = JSON.parse(localStorage.getItem("saved-movie")) || {}
+        if(!saved.newList) saved.newList = []
+        
+        saved.newList.push(movie)
+        localStorage.setItem("saved-movie", JSON.stringify(saved))
+        console.log("click click")
+    }
     
     return(
         <div className="max-w-screen-2xl m-auto">
@@ -64,6 +73,7 @@ const SingleMovie = () => {
                     <div className="flex gap-3">
                         <Link className="p-3 px-8 text-black rounded-[6px] bg-white flex gap-2"><img src={play} className="h-6" alt="" /> Start Playing</Link>
                         <Link className="p-3 px-8 bg-white/40 backdrop-blur-md rounded-[6px] flex gap-2"><GoDownload size={20}/> Download</Link>
+                        <button onClick={AddToList} className="p-4 bg-white/40 backdrop-blur-md rounded-full"><FaPlus /></button>
                     </div>
                 </div>
             </div>

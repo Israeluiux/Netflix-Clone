@@ -50,7 +50,7 @@ const TopPicks = () => {
                 <div className="flex gap-4 transition-transform duration-500" style={{transform: `translateX(-${index * moveBy}px)`}}>
                     {
                         movie.map(card => (
-                            <div key={card.id} onClick={() => navigate(`/${card.id}`)} onMouseEnter={() => setActive(card.id)} onMouseLeave={() => setActive(null)}  className="flex-shrink-0 w-70 h-40 bg-black rounded-[6px] cursor-pointer mt-4 overflow-hidden relative">
+                            <div key={card.id} onClick={() => navigate(`/movie/${card.id}`)} onMouseEnter={() => setActive(card.id)} onMouseLeave={() => setActive(null)}  className="flex-shrink-0 w-70 h-40 bg-black rounded-[6px] cursor-pointer mt-4 overflow-hidden relative">
                                 <img src={`https://image.tmdb.org/t/p/w500`+card.backdrop_path} alt="" className="h-full w-full rounded-[6px]" />
                                 {
                                   active === card.id && <><div className="absolute bg-gradient-to-t from-black/100 via-black/30 to-black/5 inset-0"></div>
