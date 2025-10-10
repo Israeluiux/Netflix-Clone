@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
 import play from "../assets/play_icon.png"
-import info from "../assets/info_icon.png"
 import { GoDownload } from "react-icons/go"
 import Continue from "../Components/SingleMovie/Continue"
 import Specially from "../Components/SingleMovie/Specially"
-import { FaPlus } from "react-icons/fa6"
+import { FaCheck, FaPlus } from "react-icons/fa6"
 
 
 const SingleMovie = () => {
+    const [isAdded, setIsAdded] = useState(null)
     const [movie, setMovie] = useState([])
     const [rating, setRating] = useState([])
     const [year, setYear] = useState([])
@@ -52,6 +52,18 @@ const SingleMovie = () => {
         localStorage.setItem("saved-movie", JSON.stringify(saved))
         console.log("click click")
     }
+
+    const checkList = (id) => {
+        const saved = JSON.parse(localStorage.getItem("saved-movie")) || {}
+        return saved.newList.some(movie => movie.id === id)
+    }
+    
+    if(checkList(movie.id)){
+        setIsAdded(!isAdded)
+    } else {
+        setIsAdded(null)
+    }
+
     
     return(
         <div className="max-w-screen-2xl m-auto">
@@ -73,7 +85,7 @@ const SingleMovie = () => {
                     <div className="flex gap-3">
                         <Link className="p-3 px-8 text-black rounded-[6px] bg-white flex gap-2"><img src={play} className="h-6" alt="" /> Start Playing</Link>
                         <Link className="p-3 px-8 bg-white/40 backdrop-blur-md rounded-[6px] flex gap-2"><GoDownload size={20}/> Download</Link>
-                        <button onClick={AddToList} className="p-4 bg-white/40 backdrop-blur-md rounded-full"><FaPlus /></button>
+                        <button onClick={AddToList} className={`p-4 ${isAdded ? "bg-white text-black" : "bg-white/40"} backdrop-blur-md rounded-full`}>{isAdded ? <FaCheck/> : <FaPlus />}</button>
                     </div>
                 </div>
             </div>
